@@ -35,6 +35,29 @@ set hidden
 " Set the color scheme as desert
 color ron
 
-" replace tab with spaces
-set expandtab
+" Set tab spaces
 set tabstop=8
+
+" hilight searched item
+set hlsearch
+
+" cscope setting
+if has("cscope")
+  set csto=1
+  set cst
+  set nocsverb
+    
+  " add any database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+  endif
+
+set csverb
+endif
+
+" Map F2 to yank inner word into clipboard
+" If the vim isn't support clipboard, install
+" vim-gtk to patch it.
+" To check if it's supported, using vim version 
+" and grep clipboard
+:map <F2> "+yiw 
