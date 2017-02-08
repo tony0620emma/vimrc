@@ -121,16 +121,21 @@ fi
 if [ "$TERM" = "screen" ]; then
 	export PROMPT_COMMAND='true'
 	set_screen_window() {
-		HPWD=`basename "$PWD"`
 		case "$BASH_COMMAND" in
-			*\033]0*);;
+		*\033]0*);;
 		"true")
 			printf '\ek%s\e\\' ""
 			;;
-		*)
+		"vi "*)
 			printf '\ek%s\e\\' "${BASH_COMMAND:3:20}"
 			;;
-	esac
-}
+		"vim "*)
+			printf '\ek%s\e\\' "${BASH_COMMAND:4:20}"
+			;;
+		*)
+			printf '\ek%s\e\\' "${BASH_COMMAND:0:20}"
+			;;
+		esac
+	}
 trap set_screen_window DEBUG				
 fi
