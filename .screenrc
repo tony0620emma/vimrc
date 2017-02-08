@@ -2,7 +2,7 @@
 startup_message off
 
 # Set hardstatus always on
-hardstatus alwayslastline " %-Lw%{= Bw}%n%f %t%{-}%+Lw %=| %M %d %0c:%s "
+hardstatus alwayslastline "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
 
 Set default encoding using utf8
 defutf8 on
@@ -10,17 +10,12 @@ defutf8 on
 # Refresh the display when exiting programs
 altscreen on
 
-# Dynamic title
-shelltitle '$ |bash'
+shelltitle ""
 
 # Disable vbell
 vbell off
 
 # Keboard binding
-# bind F11 to move to previous window
-bindkey -k F1 prev
-# bind F12 to move to next window
-bindkey -k F2 next 
 # bind Alt`~= to screen0~12
 bindkey "^[`" select 0
 bindkey "^[1" select 1
@@ -43,6 +38,9 @@ bindkey -k k8 kill
 bindkey -k k9 screen
 # bind F10 to rename current screen window
 bindkey -k k; title
+# Ctrl + right/left
+bindkey ^[[D prev # for putty
+bindkey ^[[C next # for putty
 
 # remove some stupid / dangerous key bindings
 bind s
