@@ -1,4 +1,42 @@
+"====================================================================
+" Start vundle
+"====================================================================
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"===============================================================
+" Write your plugins here
+"===============================================================
+Plugin 'vim-scripts/taglist.vim'
+
+"====================================================================
+" Run vundle
+"====================================================================
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
 " minimal vimrc for new vim users to start with.
+" Put your non-Plugin stuff after this line
 "
 " Referenced here: http://vimuniversity.com/samples/your-first-vimrc-should-be-nearly-empty
 "
@@ -41,7 +79,9 @@ set tabstop=8
 " hilight searched item
 set hlsearch
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
   set csto=1
   set cst
@@ -55,6 +95,8 @@ if has("cscope")
 set csverb
 endif
 
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+
 " Map F2 to yank inner word into clipboard
 " If the vim isn't support clipboard, install
 " vim-gtk to patch it.
@@ -62,11 +104,23 @@ endif
 " and grep clipboard
 :map <F2> "+yiw 
 
+" To copy/paste cross terminals
+:set clipboard^=unnamed
+
 " screen title
 if &term == "screen"
 	let &titlestring = "vim(" . expand("%:t") . ")"
 	set t_ts=^[k
 	set t_fs=^[\
-	set title
+	"set title
 endif
 autocmd TabEnter,WinEnter,BufReadPost,FileReadPost,BufNewFile * let &titlestring = 'vim(' . expand("%:t") . ')'
+
+" Highlight column 80 to check for linux coding style
+:set colorcolumn=80
+
+" ============================================================
+" TlistToggle settings
+" ============================================================
+" modify the default window size
+let Tlist_WinWidth=40
