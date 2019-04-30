@@ -39,8 +39,11 @@ bindkey -k k9 screen
 # bind F10 to rename current screen window
 bindkey -k k; title
 # Ctrl + right/left
-bindkey ^[[D prev # for putty
-bindkey ^[[C next # for putty
+bindkey "^[[D" prev # for putty
+bindkey "^[[C" next # for putty
+bindkey "^[[1;5C" next
+bindkey "^[[1;5D" prev
+
 
 # remove some stupid / dangerous key bindings
 bind s
