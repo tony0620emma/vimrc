@@ -4,7 +4,7 @@ startup_message off
 # Set hardstatus always on
 hardstatus alwayslastline "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
 
-Set default encoding using utf8
+# Set default encoding using utf8
 defutf8 on
 
 # Refresh the display when exiting programs
@@ -30,20 +30,24 @@ bindkey "^[9" select 9
 bindkey "^[0" select 10
 bindkey "^[-" select 11
 bindkey "^[=" select 12
+
 # bind F7 to detach screen session (to background)
-bindkey -k k7 detach
+#bindkey -k k7 detach
+
 # bind F8 to kill current screen window
-bindkey -k k8 kill
+#bindkey -k k8 kill
+
 # bind F9 to create a new screen
-bindkey -k k9 screen
+#bindkey -k k9 screen
+
 # bind F10 to rename current screen window
-bindkey -k k; title
+#bindkey -k k; title
+
 # Ctrl + right/left
 bindkey "^[[D" prev # for putty
 bindkey "^[[C" next # for putty
 bindkey "^[[1;5C" next
 bindkey "^[[1;5D" prev
-
 
 # remove some stupid / dangerous key bindings
 bind s
@@ -55,3 +59,9 @@ bind ^\
 bind \\
 bind ^h
 bind h
+
+# Setup screens
+#chdir /home/tony/workspace/git # All screens start in ~/workspace/git
+#screen -t 'server' 0 bash # Make first screen for running server
+#screen -t 'specs' 1 bash # Make screen for running tests
+#screen -t 'workspace' 2 bash # Make screen for general work i.e. running git commands
