@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# turn off debug trap, turn on later if we're in screen
-trap "" DEBUG
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -40,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -87,6 +84,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -116,26 +116,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Show the current directory AND running command in the screen window title
-# inspired from http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-if [ "$TERM" = "screen" ]; then
-	export PROMPT_COMMAND='true'
-	set_screen_window() {
-		case "$BASH_COMMAND" in
-		*\033]0*);;
-		"true")
-			printf '\ek%s\e\\' ""
-			;;
-		"vi "*)
-			printf '\ek%s\e\\' "${BASH_COMMAND:3:20}"
-			;;
-		"vim "*)
-			printf '\ek%s\e\\' "${BASH_COMMAND:4:20}"
-			;;
-		*)
-			printf '\ek%s\e\\' "${BASH_COMMAND:0:20}"
-			;;
-		esac
-	}
-trap set_screen_window DEBUG				
-fi
+export GOPATH=$HOME/gowork
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
+export PATH=$PATH:$HOME/workspace/nvim/nvim-linux64/bin
+alias vi='nvim'
+alias vim='nvim'
