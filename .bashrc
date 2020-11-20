@@ -122,6 +122,6 @@ export PATH=$PATH:$GOPATH/bin
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
-export PATH=$PATH:$HOME/workspace/nvim/nvim-linux64/bin
+export PATH=$PATH:$HOME/workspace/nvim-linux64/bin
 alias vi='nvim'
 alias vim='nvim'
